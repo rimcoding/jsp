@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!--
+	signin.html 요청을 하면 화면을 그리는 담당을 만들어주면 된다.
+	1.요청
+	form 태그중 method 속성 ,action 속성에 대해 알아보고
+	name 값과 password값을 보낼 수 있는 화면을 구성하시오.
+	
+	2.버튼을 누르면 연산처리를 할 서블릿 객체를 만들어 주세요.
+		method 방식은 : post
+		서버 콘솔창에 넘겨 받은 데이터를 출력 하시오.
+ -->
+ <!-- http://localhost:8080/myblog/signin.html 
+  -->
+ 
+ 
+ <!--  
+ http://localhost:8080/myblog/sv
+ -->
+  
+  <form action = "sv"  method = "get">
+ 		아이디 : <input type ="text" name = "id"><br>
+ 		비밀번호 : <input type = "password" name = "password"><br>
+ 		<input type = "submit" value = "로그인">
+ </form>
+ <!--
+<form action = "/myblog/sv" method = "post">
+ 	아이디 : <input type = "text" name ="id"><br>
+ 	비밀번호 : <input type = "password" name = "password"><br>
+		<input type = "submit" value = "로그인"> 
+ </form>
+
+  -->
+  
+ 
+</body>
+</html>
