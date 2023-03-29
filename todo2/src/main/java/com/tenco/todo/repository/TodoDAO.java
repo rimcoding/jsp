@@ -49,20 +49,16 @@ public class TodoDAO implements ITodoRepo {
 	}
 
 	@Override
-	public int insert(int id, String title,String decription, int priority, int completed) {
+	public int insert(String title,String decription) {
 		int resultcount = 0;
-		String queryStr = " INSERT INTO todolist(id,title,decription,priority,completed) "
+		String queryStr = " INSERT INTO todolist(title,decription) "
 				+ " VALUES "
-				+ "    ( ? , ? , ? , ? , ? ) ";
+				+ "    ( ? , ? ) ";
 		PreparedStatement pstmt = null;
-		
 		try {
 			pstmt = conn.prepareStatement(queryStr);
-			pstmt.setInt(1, id);
-			pstmt.setString(2, title);
-			pstmt.setString(3, decription);
-			pstmt.setInt(4, priority);
-			pstmt.setInt(5, completed);
+			pstmt.setString(1, title);
+			pstmt.setString(2, decription);
 			resultcount = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -78,13 +74,48 @@ public class TodoDAO implements ITodoRepo {
 	}
 
 	@Override
-	public void update() {
-		
+	public int update(String title,String decription) {
+		int resultRowCount = 0;
+		String queryStr = " UPDATE todolist SET title = ? WHERE decription = ? ";
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(queryStr);
+			pstmt.setString(1, title);
+			pstmt.setString(2, decription);
+			resultRowCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				pstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return resultRowCount;
 	}
 
 	@Override
-	public void delete() {
+	public int delete(String title) {
+		int resultRowCount = 0;
+		String queryStr = " DELETE FROM todolist WHERE title = ? ";
+		PreparedStatement pstmt = null;
 		
+		try {
+			pstmt = conn.prepareStatement(queryStr);
+			pstmt.setString(1, title);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return resultRowCount;
 	}
 		
 }

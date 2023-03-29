@@ -40,9 +40,11 @@ public class CategoryTest extends HttpServlet {
 			dao.delete(Integer.parseInt(cid));
 			
 		}else {
-			
+			ArrayList<CategoryDTO>resultList = dao.select();
+			request.setAttribute("list", resultList);
+			RequestDispatcher dis = request.getRequestDispatcher("test/categorylist.jsp");
+			dis.forward(request, response);
 		}
-		ArrayList<CategoryDTO>resultList = dao.select();
 		//a 링크 <-- get
 //		response.setContentType("text/html; charset=utf-8; ");
 //		System.out.println(result.toString());
@@ -53,9 +55,6 @@ public class CategoryTest extends HttpServlet {
 //		request.setAttribute("list", resultList);	//request 객체에 값 셋팅
 //		RequestDispatcher dispatcher = request.getRequestDispatcher("test/categorylist.jsp");
 //		dispatcher.forward(request, response);
-		request.setAttribute("list", resultList);
-		RequestDispatcher dis = request.getRequestDispatcher("test/categorylist.jsp");
-		dis.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 

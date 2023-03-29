@@ -7,7 +7,7 @@ import com.tenco.todo.dto.TodoDTO;
 public interface ITodoRepo {
 	
 	ArrayList<TodoDTO> select();
-	int insert(int id, String title,String decription, int priority, int completed);
-	void update();
-	void delete();
+	int insert(String title,String decription);
+	int update(String title,String decription);
+	int delete(String title);
 }
